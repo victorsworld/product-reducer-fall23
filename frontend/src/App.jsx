@@ -1,34 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useReducer } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 import './App.css'
 
+import productReducer from './reducers/productReducer'
+
 function App() {
-  const [count, setCount] = useState(0)
+
+  const initialState = [
+    {
+      id: uuidv4(),
+      title: "Hogwart's Legacy",
+      publisher: "Warner Bros.",
+      genre: "Adventure",
+      price: 59.99
+    },
+    {
+      id: uuidv4(),
+      title: "Destiny 2",
+      publisher: "Bungie",
+      genre: "FPS",
+      price: 29.99
+    },
+    {
+      id: uuidv4(),
+      title: "The Last of Us",
+      publisher: "Sony",
+      genre: "Adventure",
+      price: 69.99
+    },
+    {
+      id: uuidv4(),
+      title: "Total War: Warhammer III",
+      publisher: "Sega",
+      genre: "Strategy",
+      price: 49.99
+    },
+    {
+      id: uuidv4(),
+      title: "Everything, Everywhere, All at Once",
+      publisher: "A24",
+      genre: "Action/Adventure",
+      price: 29.99      
+    },
+    {
+      id: uuidv4(),
+      title: "Dune",
+      publisher: "Penguin Classics",
+      genre: "Action/Adventure",
+      price: 20.99     
+    }
+  ]
+  const [product, dispatch] = useReducer(productReducer, initialState)
+
+ 
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Product Reducer</h1>
+      {
+        product.map(element => {
+          return (
+            <p>{element.title}</p>
+          )
+        })
+      }
+    </div>
   )
 }
 
