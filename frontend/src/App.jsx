@@ -73,6 +73,10 @@ function App() {
               genre={element.genre}
               price={element.price}
               deleteProduct={deleteProduct}
+              editProduct={(param) => dispatch({
+                type: 'edit',
+                editObj:param
+              })}
             />
           )
         })
