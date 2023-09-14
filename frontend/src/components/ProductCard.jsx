@@ -4,17 +4,62 @@ import './ProductCard.css'
 const ProductCard = (props) => {
     const [editBtn, setEditBtn] = useState(false)
 
+    const [editProduct, setEditProduct] = useState({
+        id: props.id,
+        title: props.title,
+        publisher: props.publisher,
+        genre: props.genre,
+        price: props.price
+    })
+
+const onChangeHandler = event => {
+    setEditProduct({
+        ...editProduct,
+        [event.target.name]: event.target.value
+    })
+}
   return (
     <div className='product-card'>
           <h2>{props.title}</h2>
           {
             editBtn ? 
             (   
-            <>
-                <h3>Editing</h3>
+            <div> 
+                <label htmlFor='title'>Title: </label>
+                <input
+                    name='title'
+                    type='text'
+                    value={editProduct.title}
+                    onChange={onChangeHandler}
+                /><br />
+                <label htmlFor='publisher'>Publisher: </label>
+                <input
+                    name='publisher'
+                    type='text'
+                    value={editProduct.publisher}
+                    onChange={onChangeHandler}
+                /><br />
+                <label htmlFor='genre'>Genre: </label>
+                <input
+                    name='genre'
+                    type='text'
+                    value={editProduct.genre}
+                    onChange={onChangeHandler}
+                /><br />
+                <label htmlFor='price'>Price: </label>
+                <input
+                    name='price'
+                    type='number'
+                    step='.01'
+                    min='0.01'
+                    value={editProduct.price}
+                    onChange={onChangeHandler}
+                /><br />
+
+            <br />
                 <button>Save Edits!</button>
                 <button onClick={() => setEditBtn(!editBtn)}>Cancel</button>
-            </>
+            </div>
             )
             :
             (
@@ -39,7 +84,7 @@ const ProductCard = (props) => {
                 }
           )}>Edit</button> */}
 
-          
+    {/* <button onClick={() => setEditBtn(!editBtn)}>{editBtn ? <>True</> : <>False</>}</button> */}
           <button onClick={()=>props.deleteProduct(props.id)}>Delete</button>
     </div>
   )
