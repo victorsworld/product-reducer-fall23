@@ -20,7 +20,17 @@ const onChangeHandler = event => {
 }
 
 const saveProduct = () => {
-    props.editProduct(editProductObj)
+    // let priceFixed = Number.parseFloat(editProductObj.price).toFixed(2)
+    let priceFixed = (Math.round(Number.parseFloat(editProductObj.price) * 100) / 100).toFixed(2)
+    // console.log(typeof priceFixed);
+    setEditProductObj({
+        ...editProductObj,
+        price: priceFixed
+    })
+    props.editProduct({
+        ...editProductObj,
+        price: priceFixed
+    })
     setEditBtn(!editBtn)
 }
   return (
@@ -67,6 +77,7 @@ const saveProduct = () => {
                     setEditBtn(!editBtn)
                     }
                     }>Save Edits!</button> */}
+                {/* same as above */}
                 <button onClick={saveProduct}>Save Edits!</button>
                 <button onClick={() => setEditBtn(!editBtn)}>Cancel</button>
             </div>
@@ -76,7 +87,7 @@ const saveProduct = () => {
                 <React.Fragment>
                     <p>Publisher: {props.publisher}</p>
                     <p>Genre: {props.genre}</p>
-                    <p>Price: {props.price}</p>
+                    <p>Price: ${props.price}</p>
                     <button onClick={() => setEditBtn(!editBtn)}>Edit</button>
                 </React.Fragment>
             )
