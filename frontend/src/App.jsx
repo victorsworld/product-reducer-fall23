@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css'
 
 import productReducer from './reducers/productReducer'
+import ProductCard from './components/ProductCard';
 
 function App() {
 
@@ -52,7 +53,11 @@ function App() {
   ]
   const [product, dispatch] = useReducer(productReducer, initialState)
 
- 
+  const deleteProduct = (id) => dispatch({
+    type: 'delete',
+    id: id
+  })
+
 
   return (
     <div>
@@ -60,7 +65,15 @@ function App() {
       {
         product.map(element => {
           return (
-            <p>{element.title}</p>
+            <ProductCard
+              key={element.id}
+              id={element.id}
+              title={element.title}
+              publisher={element.publisher}
+              genre={element.genre}
+              price={element.price}
+              deleteProduct={deleteProduct}
+            />
           )
         })
       }
