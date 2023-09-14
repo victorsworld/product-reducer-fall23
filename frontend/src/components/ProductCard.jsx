@@ -4,7 +4,7 @@ import './ProductCard.css'
 const ProductCard = (props) => {
     const [editBtn, setEditBtn] = useState(false)
 
-    const [editProduct, setEditProduct] = useState({
+    const [editProductObj, setEditProductObj] = useState({
         id: props.id,
         title: props.title,
         publisher: props.publisher,
@@ -13,10 +13,15 @@ const ProductCard = (props) => {
     })
 
 const onChangeHandler = event => {
-    setEditProduct({
-        ...editProduct,
+    setEditProductObj({
+        ...editProductObj,
         [event.target.name]: event.target.value
     })
+}
+
+const saveProduct = () => {
+    props.editProduct(editProductObj)
+    setEditBtn(!editBtn)
 }
   return (
     <div className='product-card'>
@@ -29,21 +34,21 @@ const onChangeHandler = event => {
                 <input
                     name='title'
                     type='text'
-                    value={editProduct.title}
+                    value={editProductObj.title}
                     onChange={onChangeHandler}
                 /><br />
                 <label htmlFor='publisher'>Publisher: </label>
                 <input
                     name='publisher'
                     type='text'
-                    value={editProduct.publisher}
+                    value={editProductObj.publisher}
                     onChange={onChangeHandler}
                 /><br />
                 <label htmlFor='genre'>Genre: </label>
                 <input
                     name='genre'
                     type='text'
-                    value={editProduct.genre}
+                    value={editProductObj.genre}
                     onChange={onChangeHandler}
                 /><br />
                 <label htmlFor='price'>Price: </label>
@@ -52,12 +57,17 @@ const onChangeHandler = event => {
                     type='number'
                     step='.01'
                     min='0.01'
-                    value={editProduct.price}
+                    value={editProductObj.price}
                     onChange={onChangeHandler}
                 /><br />
 
             <br />
-                <button>Save Edits!</button>
+                {/* <button onClick={() => {
+                    props.editProduct(editProductObj)
+                    setEditBtn(!editBtn)
+                    }
+                    }>Save Edits!</button> */}
+                <button onClick={saveProduct}>Save Edits!</button>
                 <button onClick={() => setEditBtn(!editBtn)}>Cancel</button>
             </div>
             )
