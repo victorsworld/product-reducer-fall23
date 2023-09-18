@@ -10,6 +10,7 @@ function App() {
   const initialState = [
     {
       id: uuidv4(),
+      type: 'game',
       title: "Hogwart's Legacy",
       publisher: "Warner Bros.",
       genre: "Adventure",
@@ -17,6 +18,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      type: 'game',
       title: "Destiny 2",
       publisher: "Bungie",
       genre: "FPS",
@@ -24,6 +26,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      type: 'game',
       title: "The Last of Us",
       publisher: "Sony",
       genre: "Adventure",
@@ -31,6 +34,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      type: 'game',
       title: "Total War: Warhammer III",
       publisher: "Sega",
       genre: "Strategy",
@@ -38,6 +42,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      type: 'movie',
       title: "Everything, Everywhere, All at Once",
       publisher: "A24",
       genre: "Action/Adventure",
@@ -45,6 +50,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      type: 'book',
       title: "Dune",
       publisher: "Penguin Classics",
       genre: "Action/Adventure",

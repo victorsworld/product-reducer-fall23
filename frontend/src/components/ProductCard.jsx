@@ -88,7 +88,17 @@ const saveProduct = () => {
                     <p>Publisher: {props.publisher}</p>
                     <p>Genre: {props.genre}</p>
                     <p>Price: ${props.price}</p>
-                    <button onClick={() => setEditBtn(!editBtn)}>Edit</button>
+                    <button onClick={() => {
+                        //resets edit state from props
+                        setEditProductObj({
+                            id: props.id,
+                            title: props.title,
+                            publisher: props.publisher,
+                            genre: props.genre,
+                            price: props.price
+                        })
+                        setEditBtn(!editBtn)
+                        }}>Edit</button>
                 </React.Fragment>
             )
           }
