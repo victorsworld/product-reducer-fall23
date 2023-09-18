@@ -75,6 +75,7 @@ function App() {
               key={element.id}
               id={element.id}
               title={element.title}
+              type={element.type}
               publisher={element.publisher}
               genre={element.genre}
               price={element.price}

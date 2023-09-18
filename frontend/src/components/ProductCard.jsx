@@ -7,6 +7,7 @@ const ProductCard = (props) => {
     const [editProductObj, setEditProductObj] = useState({
         id: props.id,
         title: props.title,
+        type: props.type,
         publisher: props.publisher,
         genre: props.genre,
         price: props.price
@@ -33,24 +34,60 @@ const saveProduct = () => {
     })
     setEditBtn(!editBtn)
 }
+
+
+const capitolize = (inputString) => {
+    // function to capitolize a string of words
+    // get the first character of each word and make it capitol
+    // you can assume each word is separated by a single space - ' '
+    let result = inputString.split(' ')
+    
+    result.forEach((e, i) => {
+        result[i] = e.charAt(0).toUpperCase() + e.slice(1)
+    });
+    
+    return result.join(' ');
+    // Default String
+}
+
+const makeOption = (param, type) => {
+    let returnOption = type === param ?<><option selected value={param}>{capitolize(param)}</option></> : <><option value={param}>{capitolize(param)}</option></>
+    return returnOption
+}
+
   return (
     <div className='product-card'>
           <h2>{props.title}</h2>
-          <h3>Example</h3>
+          <h3>{capitolize(props.type)}</h3>
           {
             editBtn ? 
             (   
             <div>
-                Example Edit<br/> 
                 <label htmlFor='title'>Title: </label>
                 <input
+                    id='title'
                     name='title'
                     type='text'
                     value={editProductObj.title}
                     onChange={onChangeHandler}
                 /><br />
+                <label htmlFor='type'>Type: </label>
+                <select id='type' name='type' onChange={onChangeHandler} value={editProductObj.type}>
+                    <option value="game">Game</option>
+                    <option value="movie">Movie</option>
+                    <option value="book">Book</option>
+                </select><br />
+                {/* <select name='type' onChange={onChangeHandler}>
+                    {makeOption('game', editProductObj.type)}
+                    {makeOption('movie', editProductObj.type)}
+                    {makeOption('book', editProductObj.type)} */}
+                    {/* {editProductObj.type === "game" ? <option selected value="game">Game</option> : <option value="game">Game</option>}
+                    {editProductObj.type === "movie" ? <option selected value="movie">Movie</option> : <option value="movie">Movie</option>}
+                    {editProductObj.type === "book" ? <option selected value="book">Book</option> : <option value="book">Book</option>} */}
+                {/* </select><br /> */}
                 <label htmlFor='publisher'>Publisher: </label>
                 <input
+                    id='publisher'
                     name='publisher'
                     type='text'
                     value={editProductObj.publisher}
@@ -58,6 +95,7 @@ const saveProduct = () => {
                 /><br />
                 <label htmlFor='genre'>Genre: </label>
                 <input
+                    id='genre'
                     name='genre'
                     type='text'
                     value={editProductObj.genre}
@@ -65,6 +103,7 @@ const saveProduct = () => {
                 /><br />
                 <label htmlFor='price'>Price: </label>
                 <input
+                    id='price'
                     name='price'
                     type='number'
                     step='.01'
@@ -95,6 +134,7 @@ const saveProduct = () => {
                         setEditProductObj({
                             id: props.id,
                             title: props.title,
+                            type: props.type,
                             publisher: props.publisher,
                             genre: props.genre,
                             price: props.price
