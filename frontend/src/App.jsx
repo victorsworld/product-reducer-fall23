@@ -10,7 +10,7 @@ function App() {
   const initialState = [
     {
       id: uuidv4(),
-      type: 'game',
+      type: 'game', 
       title: "Hogwart's Legacy",
       publisher: "Warner Bros.",
       genre: "Adventure",

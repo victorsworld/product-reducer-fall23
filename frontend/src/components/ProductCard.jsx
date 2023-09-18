@@ -36,10 +36,12 @@ const saveProduct = () => {
   return (
     <div className='product-card'>
           <h2>{props.title}</h2>
+          <h3>Example</h3>
           {
             editBtn ? 
             (   
-            <div> 
+            <div>
+                Example Edit<br/> 
                 <label htmlFor='title'>Title: </label>
                 <input
                     name='title'
