@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import './App.css'
 
@@ -58,6 +58,16 @@ function App() {
     }
   ]
   const [product, dispatch] = useReducer(productReducer, initialState)
+
+  useEffect(() => {
+    const loadData = async () => {
+      const response = await fetch('http://localhost:4000/api/products/get-all-products')
+      const data = await response.json()
+      console.log(data)  
+    }
+    loadData()
+  }, [])
+  
 
   const deleteProduct = (id) => dispatch({
     type: 'delete',

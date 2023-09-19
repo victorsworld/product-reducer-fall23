@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors')
+require('dotenv').config()
+
 
 // router import for router file
 var indexRouter = require('./routes/index');
@@ -10,6 +13,10 @@ var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products')
 
 var app = express();
+
+app.use(cors({
+  origin: process.env.CORS_ORIGIN
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
