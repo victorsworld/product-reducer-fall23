@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import './ProductCard.css'
 
 const ProductCard = (props) => {
-    const [editBtn, setEditBtn] = useState(false)
+    // const [editBtn, setEditBtn] = useState(props.title ? false : true)
+    const [editBtn, setEditBtn] = useState(props.price === 0 ? true : false)
 
     const [editProductObj, setEditProductObj] = useState({
         id: props.id,
@@ -12,6 +13,8 @@ const ProductCard = (props) => {
         genre: props.genre,
         price: props.price
     })
+    
+    // const [editBtn, setEditBtn] = useState(editProductObj.price === 0 ? true : false)
 
 const onChangeHandler = event => {
     setEditProductObj({
@@ -21,6 +24,10 @@ const onChangeHandler = event => {
 }
 
 const saveProduct = () => {
+    if (editProductObj.price == 0) {
+        alert("Please enter a non-zero price")
+        return
+    }
     // let priceFixed = Number.parseFloat(editProductObj.price).toFixed(2)
     let priceFixed = (Math.round(Number.parseFloat(editProductObj.price) * 100) / 100).toFixed(2)
     // console.log(typeof priceFixed);

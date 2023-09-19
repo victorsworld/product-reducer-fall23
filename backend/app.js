@@ -11,6 +11,9 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products')
+//create a new store route for following url
+// http://localhost:4000/api/store/list-products
+//should return an array from the code-drop channel
 
 var app = express();
 
