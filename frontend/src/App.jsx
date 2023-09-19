@@ -84,7 +84,7 @@ function App() {
     <div>
       <h1>Product Reducer</h1>
       {/* button dispatchs to add-product */}
-      <button>Add Product</button>
+      <button onClick={() => dispatch({type: 'add-product'})}>Add Product</button>
       {
         product.map(element => {
           return (

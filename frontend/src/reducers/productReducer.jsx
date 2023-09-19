@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 
 export default function productReducer(state, action) {
     switch (action.type) {
@@ -32,10 +33,25 @@ export default function productReducer(state, action) {
         case 'get-products':
             // console.log(...state, ...action.payload)
             return action.payload
-
         // add-product case
+        case 'add-product':
         // create a new empty product object
-        // inserts the empty product object into the first index of the array
+            let newProduct = {
+                id: uuidv4(),
+                type: '',
+                title: "",
+                publisher: "",
+                genre: "",
+                price: 0.00
+            }
+
+            // inserts the empty product object into the first index of the state array
+            let addArray = [
+                newProduct,
+                ...state
+            ]
+            // console.log(addArray);
+            return addArray
                 
         default:
             return state;
