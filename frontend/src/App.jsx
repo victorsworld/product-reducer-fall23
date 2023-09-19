@@ -60,9 +60,11 @@ function App() {
   const initialState = []
   const [product, dispatch] = useReducer(productReducer, initialState)
 
+  const baseURL = 'http://localhost:4000/api'
+
   useEffect(() => {
     const loadData = async () => {
-      const response = await fetch('http://localhost:4000/api/products/get-all-products')
+      const response = await fetch(baseURL + '/products/get-all-products')
       const data = await response.json()
       console.log(data)  
       dispatch({
@@ -79,6 +81,16 @@ function App() {
     id: id
   })
 
+  const getAPIdata = async () => {
+    const response = await fetch(baseURL + '/store/list-products')
+    const data = await response.json()
+    dispatch({
+      type: 'add-API',
+      payload: data
+    })
+  }
+
+
 
   return (
     <div>
@@ -89,7 +101,7 @@ function App() {
       {/* button should trigger a function that gets data from the /store/list-products route 
       and then dispatchs to the reducer which refactors the data into the format our store is using
       and then sets the state with the new data and the existing data*/}
-      <button>Add Store/API products</button>
+      <button onClick={getAPIdata}>Add Store/API products</button>
 
       {
         product.map(element => {

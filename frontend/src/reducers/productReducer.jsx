@@ -52,6 +52,22 @@ export default function productReducer(state, action) {
             ]
             // console.log(addArray);
             return addArray
+
+        case 'add-API':
+            let payloadArr = action.payload.map(element => {
+                return {
+                    id: element.id,
+                    type: 'game',
+                    title: element.gameTitle,
+                    publisher: element.publisherName,
+                    genre: element.genre,
+                    price: element.MSRP
+                }
+            })
+            // console.log('!@-------payloadArr-------@!')
+            // console.log(payloadArr)
+            return [...payloadArr, ...state]
+            
                 
         default:
             return state;
