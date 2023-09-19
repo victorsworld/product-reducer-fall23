@@ -85,6 +85,12 @@ function App() {
       <h1>Product Reducer</h1>
       {/* button dispatchs to add-product */}
       <button onClick={() => dispatch({type: 'add-product'})}>Add Product</button>
+
+      {/* button should trigger a function that gets data from the /store/list-products route 
+      and then dispatchs to the reducer which refactors the data into the format our store is using
+      and then sets the state with the new data and the existing data*/}
+      <button>Add Store/API products</button>
+
       {
         product.map(element => {
           return (
