@@ -14,6 +14,7 @@ const productsRouter = require('./routes/products')
 //create a new store route for following url
 // http://localhost:4000/api/store/list-products
 //should return an array from the code-drop channel
+const storeRouter = require('./routes/store')
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/products', productsRouter)
+app.use('/api/store', storeRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
