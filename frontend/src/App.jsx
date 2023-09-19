@@ -7,56 +7,57 @@ import ProductCard from './components/ProductCard';
 
 function App() {
 
-  const initialState = [
-    {
-      id: uuidv4(),
-      type: 'game', 
-      title: "Hogwart's Legacy",
-      publisher: "Warner Bros.",
-      genre: "Adventure",
-      price: 59.99
-    },
-    {
-      id: uuidv4(),
-      type: 'game',
-      title: "Destiny 2",
-      publisher: "Bungie",
-      genre: "FPS",
-      price: 29.99
-    },
-    {
-      id: uuidv4(),
-      type: 'game',
-      title: "The Last of Us",
-      publisher: "Sony",
-      genre: "Adventure",
-      price: 69.99
-    },
-    {
-      id: uuidv4(),
-      type: 'game',
-      title: "Total War: Warhammer III",
-      publisher: "Sega",
-      genre: "Strategy",
-      price: 49.99
-    },
-    {
-      id: uuidv4(),
-      type: 'movie',
-      title: "Everything, Everywhere, All at Once",
-      publisher: "A24",
-      genre: "Action/Adventure",
-      price: 29.99      
-    },
-    {
-      id: uuidv4(),
-      type: 'book',
-      title: "Dune",
-      publisher: "Penguin Classics",
-      genre: "Action/Adventure",
-      price: 20.99     
-    }
-  ]
+  // const initialState = [
+  //   {
+  //     id: uuidv4(),
+  //     type: 'game', 
+  //     title: "Hogwart's Legacy",
+  //     publisher: "Warner Bros.",
+  //     genre: "Adventure",
+  //     price: 59.99
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     type: 'game',
+  //     title: "Destiny 2",
+  //     publisher: "Bungie",
+  //     genre: "FPS",
+  //     price: 29.99
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     type: 'game',
+  //     title: "The Last of Us",
+  //     publisher: "Sony",
+  //     genre: "Adventure",
+  //     price: 69.99
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     type: 'game',
+  //     title: "Total War: Warhammer III",
+  //     publisher: "Sega",
+  //     genre: "Strategy",
+  //     price: 49.99
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     type: 'movie',
+  //     title: "Everything, Everywhere, All at Once",
+  //     publisher: "A24",
+  //     genre: "Action/Adventure",
+  //     price: 29.99      
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     type: 'book',
+  //     title: "Dune",
+  //     publisher: "Penguin Classics",
+  //     genre: "Action/Adventure",
+  //     price: 20.99     
+  //   }
+  // ]
+  const initialState = []
   const [product, dispatch] = useReducer(productReducer, initialState)
 
   useEffect(() => {
@@ -64,6 +65,10 @@ function App() {
       const response = await fetch('http://localhost:4000/api/products/get-all-products')
       const data = await response.json()
       console.log(data)  
+      dispatch({
+        type: 'get-products',
+        payload: data
+      })
     }
     loadData()
   }, [])
@@ -78,6 +83,8 @@ function App() {
   return (
     <div>
       <h1>Product Reducer</h1>
+      {/* button dispatchs to add-product */}
+      <button>Add Product</button>
       {
         product.map(element => {
           return (

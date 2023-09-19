@@ -29,7 +29,14 @@ export default function productReducer(state, action) {
                 
                 // the above into a single line
                 return state.map(element => element.id === action.editObj.id ? action.editObj : element)
-        
+        case 'get-products':
+            // console.log(...state, ...action.payload)
+            return action.payload
+
+        // add-product case
+        // create a new empty product object
+        // inserts the empty product object into the first index of the array
+                
         default:
             return state;
     }
