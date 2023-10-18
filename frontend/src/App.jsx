@@ -1,7 +1,7 @@
 import { useState, useReducer, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import './App.css'
-
+import { getProducts, addStore, addProduct, updateProduct, removeProduct } from './redux/productsSlice';
 import productReducer from './reducers/productReducer'
 import ProductCard from './components/ProductCard';
 
