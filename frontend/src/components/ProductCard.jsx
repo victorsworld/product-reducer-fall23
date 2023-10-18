@@ -1,3 +1,82 @@
+// import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import './ProductCard.css'
+// import { editProduct, deleteProduct } from '../redux/productSlice'
+
+// function ProductCard(props) {
+//     const defaultProduct = {
+//         id: props.id ,
+//         title: props.title ,
+//         type: props.type ,
+//         publisher: props.publisher,
+//         genre: props.genre ,
+//         price: props.price 
+//     };
+
+//     const [isEditing, setIsEditing] = useState(!props.title);
+//     const [editedProduct, setEditedProduct] = useState(defaultProduct);
+//     const dispatch = useDispatch();
+
+//     const handleEditToggle = () => {
+//         setIsEditing(prevState => !prevState);
+//     }
+
+//     const handleSave = () => {
+//         dispatch(editProduct(editedProduct));
+//         setIsEditing(false);
+//     }
+
+//     const handleChange = (e, field) => {
+//         setEditedProduct(prevState => ({
+//             ...prevState,
+//             [field]: e.target.value
+//         }));
+//     }
+
+//     const handleDelete = () => {
+//         dispatch(deleteProduct({ id: props.id }));
+//     }
+
+//     return (
+//         <div className="product-card">
+//             {isEditing ? (
+//                 <div>
+//                     <label>Title:</label>
+//                     <input value={editedProduct.title} onChange={e => handleChange(e, 'title')} />
+                    
+//                     <label>Type:</label>
+//                     <input value={editedProduct.type} onChange={e => handleChange(e, 'type')} />
+                    
+//                     <label>Publisher:</label>
+//                     <input value={editedProduct.publisher} onChange={e => handleChange(e, 'publisher')} />
+                    
+//                     <label>Genre:</label>
+//                     <input value={editedProduct.genre} onChange={e => handleChange(e, 'genre')} />
+                    
+//                     <label>Price:</label>
+//                     <input value={editedProduct.price} onChange={e => handleChange(e, 'price')} />
+
+//                     <button onClick={handleSave}>Save</button>
+//                     <button onClick={handleEditToggle}>Cancel</button>
+//                 </div>
+//             ) : (
+//                 <div>
+//                     <p>Title: {props.title}</p>
+//                     <p>Type: {props.type}</p>
+//                     <p>Publisher: {props.publisher}</p>
+//                     <p>Genre: {props.genre}</p>
+//                     <p>Price: {props.price}</p>
+
+//                     <button onClick={handleEditToggle}>Edit</button>
+//                     <button onClick={handleDelete}>Delete</button>
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
+
+// export default ProductCard
+
 import React, {useState} from 'react'
 import './ProductCard.css'
 
